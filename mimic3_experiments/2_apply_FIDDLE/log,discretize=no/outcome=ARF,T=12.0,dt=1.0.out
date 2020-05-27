@@ -1,0 +1,124 @@
+Namespace(T=12.0, data_path='../data/processed//features,discretize=no/outcome=ARF,T=12.0,dt=1.0/', discretize=False, dt=1.0, population='../data/processed//population/ARF_12.0h.csv', stats_functions=['min', 'max', 'mean'], theta_1=0.001, theta_2=0.001, theta_freq=1.0)
+Input data file: ../data/processed//features,discretize=no/outcome=ARF,T=12.0,dt=1.0/input_data.p
+
+Input arguments:
+    T      = 12
+    dt     = 1.0
+    θ₁     = 0.001
+    θ₂     = 0.001
+    θ_freq = 1.0
+    k      = 3 ['min', 'max', 'mean']
+discretize = no
+
+N = 14174
+L = 12
+
+
+================================================================================
+1) Pre-filter
+================================================================================
+Remove rows not in population
+Remove rows with t outside of [0, 12]
+Remove rare variables (<= 0.001)
+Total variables     : 4730
+Rare variables      : 1839
+Remaining variables : 2891
+# rows (original)   : 11967172
+# rows (filtered)   : 11948197
+
+================================================================================
+2) Transform; 3) Post-filter
+================================================================================
+
+--------------------------------------------------------------------------------
+*) Detecting value types
+--------------------------------------------------------------------------------
+Saved as: ../data/processed//features,discretize=no/outcome=ARF,T=12.0,dt=1.0/value_types.csv
+
+--------------------------------------------------------------------------------
+*) Separate time-invariant and time-dependent
+--------------------------------------------------------------------------------
+Variables (time-invariant): 12
+Variables (time-dependent): 2879
+# rows    (time-invariant): 170088
+# rows    (time-dependent): 11778109
+
+--------------------------------------------------------------------------------
+2.1) Transform time-invariant data
+--------------------------------------------------------------------------------
+(N × ^d) table            :	 (14174, 12)
+number of missing entries :	 368 out of 170088 total
+Time elapsed: 0.147321 seconds
+
+Output
+s_all, binary features    :	 (14174, 149)
+Time elapsed: 2.115081 seconds
+
+--------------------------------------------------------------------------------
+3.1) Post-filter time-invariant data
+--------------------------------------------------------------------------------
+Original       : 149
+Nearly-constant: 58
+Correlated     : 3
+Time elapsed: 2.145928 seconds
+
+Output
+s: shape=(14174, 88), density=0.127
+Total time: 2.212549 seconds
+
+
+--------------------------------------------------------------------------------
+2.2) Transform time-dependent data
+--------------------------------------------------------------------------------
+Total variables    : 2879
+Frequent variables : ['DiaBP', 'HR', 'RR', 'SpO2', 'SysBP']
+M₁ = 5
+M₂ = 2874
+k  = 3 ['min', 'max', 'mean']
+
+Transforming each example...
+(freq) number of missing entries :	 95971 out of 14174×12×5=850440 total
+(freq) number of imputed entries :	 28008
+ DiaBP  8049
+    HR  3097
+    RR  3612
+  SpO2  5264
+ SysBP  7986
+(freq) number of not imputed entries :	 67963
+ DiaBP  13700
+    HR  13254
+    RR  13523
+  SpO2  13799
+ SysBP  13687
+(non-freq) number of missing entries :	 478738648 out of 14174×12×2874=488832912 total
+
+(N × L × ^D) table :	 (14174, 12, 2904)
+Time elapsed: 566.320147 seconds
+Discretizing features...
+
+Discretizing categorical features...
+Finished discretizing features
+
+Output
+X_all: shape=(14174, 12, 5122), density=0.459
+Time elapsed: 3961.965154 seconds
+
+--------------------------------------------------------------------------------
+3.2) Post-filter time-dependent data
+--------------------------------------------------------------------------------
+(14174, 12, 5122) 0.4591854819723427
+Original : 5122
+Nearly-constant: 2677
+*** time:  1457.5692596435547
+Correlated     : 4
+*** time:  2341.0546984672546
+
+Output
+X: shape=(14174, 12, 2441), density=0.316
+(14174, 12, 2441) 0.31621867532301423
+Time elapsed: 6303.189840 seconds
+
+Output
+X: shape=(14174, 12, 2441), density=0.316
+Total time: 6397.566576 seconds
+
