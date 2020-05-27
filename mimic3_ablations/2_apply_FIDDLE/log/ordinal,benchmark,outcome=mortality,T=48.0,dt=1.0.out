@@ -1,0 +1,116 @@
+Input data file: /data4/tangsp/FIDDLE/mimic3_experiments/data/processed/features/benchmark,outcome=mortality,T=48.0,dt=1.0/input_data.p
+
+Input arguments:
+    T      = 48
+    dt     = 1.0
+    θ₁     = 0.001
+    θ₂     = 0.001
+    θ_freq = 1.0
+    k      = 3 ['min', 'max', 'mean']
+binarize = yes
+
+N = 8577
+L = 48
+
+
+================================================================================
+1) Pre-filter
+================================================================================
+Remove rows not in population
+Remove rows with t outside of [0, 48]
+Remove rare variables (<= 0.001)
+Total variables     : 5405
+Rare variables      : 1524
+Remaining variables : 3881
+# rows (original)   : 33684409
+# rows (filtered)   : 33661000
+
+================================================================================
+2) Transform; 3) Post-filter
+================================================================================
+
+--------------------------------------------------------------------------------
+*) Detecting value types
+--------------------------------------------------------------------------------
+Saved as: ../data/features,ablations/ordinal,benchmark,outcome=mortality,T=48.0,dt=1.0/value_types.csv
+
+--------------------------------------------------------------------------------
+*) Separate time-invariant and time-dependent
+--------------------------------------------------------------------------------
+Variables (time-invariant): 12
+Variables (time-dependent): 3869
+# rows    (time-invariant): 102924
+# rows    (time-dependent): 33558076
+
+--------------------------------------------------------------------------------
+2-A) Transform time-invariant data
+--------------------------------------------------------------------------------
+(N × ^d) table            :	 (8577, 12)
+number of missing entries :	 374 out of 102924 total
+Time elapsed: 0.256884 seconds
+
+Output
+s_all, binary features    :	 (8577, 152)
+Time elapsed: 2.509025 seconds
+
+--------------------------------------------------------------------------------
+3-A) Post-filter time-invariant data
+--------------------------------------------------------------------------------
+Original       : 152
+Nearly-constant: 55
+Correlated     : 3
+Time elapsed: 2.586198 seconds
+
+Output
+s: shape=(8577, 94), density=0.140
+Total time: 2.659438 seconds
+
+
+--------------------------------------------------------------------------------
+2-B) Transform time-dependent data
+--------------------------------------------------------------------------------
+Total variables    : 3869
+Frequent variables : ['220048', 'DiaBP', 'HR', 'RR', 'SpO2', 'SysBP']
+M₁ = 6
+M₂ = 3863
+k  = 3 ['min', 'max', 'mean']
+
+Transforming each example...
+DONE: Transforming each example...
+(freq) number of missing entries :	 179265 out of 8577×48×6=2470176 total
+(freq) number of imputed entries :	 97328
+(freq) number of not imputed entries :	 81937
+(non-freq) number of missing entries :	 1561275820 out of 8577×48×3863=1590381648 total
+
+(N × L × ^D) table :	 (8577, 48, 3899)
+Time elapsed: 1602.799133 seconds
+Discretizing features...
+
+Processing 3893 non-boolean variable columns...
+    Binning numeric variables by quintile...
+    Converting variables to binary features
+Finished discretizing features
+
+Output
+X_all: shape=(8577, 48, 9950), density=0.016
+Time elapsed: 5116.279016 seconds
+
+--------------------------------------------------------------------------------
+3-B) Post-filter time-dependent data
+--------------------------------------------------------------------------------
+(8577, 48, 9950) 0.015691314360071314
+Original : 9950
+Nearly-constant: 1642
+*** time:  5924.276056051254
+Correlated     : 359
+*** time:  12414.71133685112
+
+Output
+X: shape=(8577, 48, 7949), density=0.018
+(8577, 48, 7949) 0.017977339510562455
+Time elapsed: 17531.153291 seconds
+
+Output
+X: shape=(8577, 48, 7949), density=0.018
+Total time: 17576.561756 seconds
+

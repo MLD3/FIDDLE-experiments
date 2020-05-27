@@ -1,0 +1,116 @@
+Input data file: ../data/processed//features/benchmark,outcome=mortality,T=48.0,dt=1.0/input_data.p
+
+Input arguments:
+    T      = 48
+    dt     = 48.0
+    θ₁     = 0.001
+    θ₂     = 0.001
+    θ_freq = 1.0
+    k      = 3 ['min', 'max', 'mean']
+binarize = yes
+
+N = 8577
+L = 1
+
+
+================================================================================
+1) Pre-filter
+================================================================================
+Remove rows not in population
+Remove rows with t outside of [0, 48]
+Remove rare variables (<= 0.001)
+Total variables     : 5405
+Rare variables      : 1524
+Remaining variables : 3881
+# rows (original)   : 33684409
+# rows (filtered)   : 33661000
+
+================================================================================
+2) Transform; 3) Post-filter
+================================================================================
+
+--------------------------------------------------------------------------------
+*) Detecting value types
+--------------------------------------------------------------------------------
+Saved as: ../data/processed//features,comparison/dt=48.0,benchmark,outcome=mortality,T=48.0,dt=1.0/value_types.csv
+
+--------------------------------------------------------------------------------
+*) Separate time-invariant and time-dependent
+--------------------------------------------------------------------------------
+Variables (time-invariant): 12
+Variables (time-dependent): 3869
+# rows    (time-invariant): 102924
+# rows    (time-dependent): 33558076
+
+--------------------------------------------------------------------------------
+2-A) Transform time-invariant data
+--------------------------------------------------------------------------------
+(N × ^d) table            :	 (8577, 12)
+number of missing entries :	 374 out of 102924 total
+Time elapsed: 0.102356 seconds
+
+Output
+s_all, binary features    :	 (8577, 152)
+Time elapsed: 1.398174 seconds
+
+--------------------------------------------------------------------------------
+3-A) Post-filter time-invariant data
+--------------------------------------------------------------------------------
+Original       : 152
+Nearly-constant: 53
+Correlated     : 3
+Time elapsed: 1.413842 seconds
+
+Output
+s: shape=(8577, 96), density=0.116
+Total time: 1.450257 seconds
+
+
+--------------------------------------------------------------------------------
+2-B) Transform time-dependent data
+--------------------------------------------------------------------------------
+Total variables    : 3869
+Frequent variables : ['220046', '220047', '220048', '220048: A Paced', '220048: AF (Atrial Fibrillation)', '220048: SB (Sinus Bradycardia)', '220048: SR (Sinus Rhythm)', '220048: ST (Sinus Tachycardia) ', '220048: V Paced', '220052', '220056', '220058', '220059', '220060', '220061', '220074', '220181', '220292', '220293', '220339', '220765', '220949', '220949_Amount', '220949_InputRoute', '220949_InputRoute: Continuous IV', '220949_InputRoute: Continuous Med', '220949_InputRoute: Drug Push', '220949_Rate', '221456', '221456_InputRoute', '221456_InputRoute: Continuous IV', '221456_Rate', '221668', '221668_InputRoute', '221668_InputRoute: Continuous Med', '221668_Rate', '221744', '221744_Amount', '221744_InputRoute', '221744_InputRoute: Continuous Med', '221744_InputRoute: Drug Push', '221744_Rate', '221749', '221749_InputRoute', '221749_InputRoute: Continuous Med', '221749_Rate', '221794', '221794_InputRoute', '221906', '221906_InputRoute', '221906_InputRoute: Continuous Med', '221906_Rate', '222011', '222011_InputRoute', '222011_InputRoute: Continuous IV', '222011_Rate', '222056', '222056_InputRoute', '222056_InputRoute: Continuous Med', '222056_Rate', '222168', '222168_InputRoute', '222168_InputRoute: Continuous Med', '222168_Rate', '223258', '223258_Amount', '223258_InputRoute', '223258_InputRoute: Continuous Med', '223258_InputRoute: Drug Push', '223258_Rate', '223751', '223752', '223769', '223770', '223772', '223780', '223780: No/Not Sedated', '223782', '223782: Constant', '223782: None', '223783', '223783: Incisional', '223783: Not Indicated', '223784', '223784: At Rest', '223784: Movement/Turning', '223792', '223792: Backrub', '223792: Emotional Support', '223792: IV Drip', '223792: IV Push', '223792: Not applicable', '223792: PO Medication', '223792: Repositioned', '223796', '223796: None', '223834', '223835', '223872', '223873', '223874', '223875', '223876', '223916', '223916: Nail Bed', '223916: Verbal', '223921', '223921: Not Indicated', '223934', '223934: Doppler', '223934: Easily Palpable', '223934: Weak Palpable', '223943', '223943: Doppler', '223943: Easily Palpable', '223943: Weak Palpable', '223951', '223951: Normal <3 Seconds', '223988', '223988: Clear', '223988: Rhonchi', '223991', '223991: None', '223991: Strong', '223991: Weak', '223999', '223999: Teeth/Tissue WNL', '224001', '224001: NPO', '224003', '224003: Obese', '224003: Soft', '224003: Soft Distended', '224023', '224023: Children', '224023: Relative', '224023: Spouse', '224024', '224024: Family Talked to RN', '224024: Family Visited', '224031', '224031: General', '224031: None', '224032', '224038', '224038: Dry Sterile Dressing', '224038: None-Open to Air', '224040', '224040: Not assessed', '224073', '224073: Activity', '224073: Disease Process ', '224073: ICU Environment', '224073: Plan of Care', '224076', '224076: Altered LOC', '224076: None', '224077', '224077: Explanation', '224082', '224082: Back', '224082: Left Side', '224082: Right Side', '224082: Side to Side', '224082: Turns by Self', '224085', '224085: 1 Person Assist', '224085: 2 Person Assist', '224085: Total Lift', '224088', '224088: None', '224089', '224089: Compression sleeve', '224105', '224119', '224119: WNL', '224161', '224162', '224168', '224226', '224261', '224263', '224264', '224267', '224269', '224270', '224274', '224275', '224276', '224277', '224279', '224280', '224281', '224281: WNL', '224282', '224284', '224287', '224288', '224289', '224289: WNL', '224290', '224308', '224308: Normal <3 Seconds', '224560', '224564', '224565', '224565: Intact', '224641', '224650', '224650: None', "224650: PAC's", "224650: PVC's", '224684', '224685', '224686', '224687', '224688', '224689', '224695', '224696', '224697', '224700', '224701', '224738', '224756', '224756: Localizes', '224756: Withdraws', '224842', '224848', '224848: Not assessed', '224851', '224851: Dry and intact', '224930', '224937', '224993', '225004', '225028', '225054', '225054: On ', '225059', '225067', '225074', '225078', '225087', '225092', '225094', '225097', '225099', '225099: Intact', '225101', '225103', '225106', '225110', '225113', '225118', '225120', '225122', '225124', '225126', '225131', '225137', '225152', '225152_InputRoute', '225152_InputRoute: Continuous Med', '225152_Rate', '225154', '225154_Amount', '225154_InputRoute', '225154_InputRoute: Drug Push', '225158', '225158_Amount', '225158_InputRoute', '225158_InputRoute: Bolus', '225158_InputRoute: Continuous IV', '225158_InputRoute: Continuous Med', '225158_Rate', '225166', '225166_InputRoute', '225166_InputRoute: Continuous IV', '225166_Rate', '225168', '225168_InputRoute', '225168_InputRoute: Continuous IV', '225168_Rate', '225184', '225185', '225187', '225188', '225189', '225202', '225210', '225231', '225231: WNL', '225234', '225234: WNL', '225237', '225237: WNL', '225312', '225313', '225752', '225753', '225754', '225755', '225756', '225792', '225798', '225798_Dose', '225798_InputRoute', '225798_InputRoute: Drug Push', '225799', '225799_Amount', '225799_InputRoute', '225799_InputRoute: Bolus', '225811', '225811: Hypertension', '225823', '225823_InputRoute', '225823_InputRoute: Continuous IV', '225823_Rate', '225828', '225828_InputRoute', '225828_InputRoute: Continuous IV', '225828_Rate', '225910', '225910_InputRoute', '225910_InputRoute: Continuous Med', '225910_Rate', '225942', '225942_InputRoute', '225942_InputRoute: Continuous Med', '225942_Rate', '225943', '225943_InputRoute', '225943_InputRoute: Continuous Med', '225943_Rate', '225975', '225975_Dose', '225975_InputRoute', '225975_InputRoute: Drug Push', '226089', '226089_InputRoute', '226089_InputRoute: Continuous IV', '226089_Rate', '226105', '226105: Appropriate', '226107', '226113', '226136', '226137', '226138', '226139', '226168', '226168: Swab', '226168: Toothbrush (No observed alteration)', '226169', '226179', '226180', '226253', '226329', '226452', '226452_Amount', '226452_InputRoute', '226452_InputRoute: Bolus', '226559', '226560', '226588', '226732', '226732: Endotracheal tube', '226732: Nasal cannula', '226732: None', '226871', '226873', '227066', '227292', '227293', '227349', '227366', '227367', '227368', '227369', '227522', '227522_InputRoute', '227522_InputRoute: Continuous IV', '227522_Rate', '227523', '227523_InputRoute', '227523_InputRoute: Continuous IV', '227523_Rate', '227565', '227566', '227588', '227664', '227688', '227700', '227700: Adequate lighting', '227700: Bed locked in low position', '227790', '227947', '227947: Confusion', '227947: Treatment interference', '227948', '227948: Soft limb', '227950', '227950: Both arms', '227954', '227954: Asleep', '227954: Calm', '227955', '227955: IV Fluid', '227958', '227958: 1:1 Time with patient', '227958: Adequate lighting', '227958: Bed alarm activated', '227958: Bed locked in low position', '227958: Hazard-free environment', '227958: Lines and tubes concealed', '227959', '227959: Continued', '227969', '227969: Adequate lighting', '227969: Bed alarm activated', '227969: Bed locked in low position', '227969: Call light within reach', '227969: Clear, firm limit setting', '227969: Family at bedside', '227969: Hazard-free environment', '227969: Items within reach', '227969: Lines and tubes concealed', '227969: Medication reviewed', '227969: Oriented by RN', '227969: Pain evaluated and treated', '227969: Provided comfort with lines and tubes', '227969: Quiet, calm space', '228099', '228100', '228305', '228306', '228306: 1 Person Assist', '228306: 2 Person Assist', '228306: Mechanical Lift', '50868', '50882', '50931', 'DiaBP', 'HR', 'RR', 'SpO2', 'SysBP', 'Temperature', 'Weight']
+M₁ = 450
+M₂ = 3419
+k  = 3 ['min', 'max', 'mean']
+
+Transforming each example...
+DONE: Transforming each example...
+(freq) number of missing entries :	 2036457 out of 8577×1×450=3859650 total
+(freq) number of imputed entries :	 0
+(freq) number of not imputed entries :	 2036457
+(non-freq) number of missing entries :	 27178507 out of 8577×1×3419=29324763 total
+
+(N × L × ^D) table :	 (8577, 1, 6119)
+Time elapsed: 585.415107 seconds
+Discretizing features...
+
+Processing 5669 non-boolean variable columns...
+    Binning numeric variables by quintile...
+    Converting variables to binary features
+Finished discretizing features
+
+Output
+X_all: shape=(8577, 1, 12758), density=0.138
+Time elapsed: 709.828864 seconds
+
+--------------------------------------------------------------------------------
+3-B) Post-filter time-dependent data
+--------------------------------------------------------------------------------
+(8577, 1, 12758) 0.13819346969330676
+Original : 12758
+Nearly-constant: 2664
+*** time:  227.599515914917
+Correlated     : 1766
+*** time:  458.9054982662201
+
+Output
+X: shape=(8577, 1, 8328), density=0.075
+(8577, 1, 8328) 0.07473115777658387
+Time elapsed: 1168.743423 seconds
+
+Output
+X: shape=(8577, 1, 8328), density=0.075
+Total time: 1172.287901 seconds
+

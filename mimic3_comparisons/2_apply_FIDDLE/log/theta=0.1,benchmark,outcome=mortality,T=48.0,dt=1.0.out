@@ -1,0 +1,127 @@
+Input data file: ../data/processed//features/benchmark,outcome=mortality,T=48.0,dt=1.0/input_data.p
+
+Input arguments:
+    T      = 48
+    dt     = 1.0
+    θ₁     = 0.1
+    θ₂     = 0.1
+    θ_freq = 1.0
+    k      = 3 ['min', 'max', 'mean']
+binarize = yes
+
+N = 8577
+L = 48
+
+
+================================================================================
+1) Pre-filter
+================================================================================
+Remove rows not in population
+Remove rows with t outside of [0, 48]
+Remove rare variables (<= 0.1)
+Total variables     : 5405
+Rare variables      : 4400
+Remaining variables : 1005
+# rows (original)   : 33684409
+# rows (filtered)   : 30906331
+
+================================================================================
+2) Transform; 3) Post-filter
+================================================================================
+
+--------------------------------------------------------------------------------
+*) Detecting value types
+--------------------------------------------------------------------------------
+Saved as: ../data/processed//features,theta=0.1/benchmark,outcome=mortality,T=48.0,dt=1.0/value_types.csv
+
+--------------------------------------------------------------------------------
+*) Separate time-invariant and time-dependent
+--------------------------------------------------------------------------------
+Variables (time-invariant): 12
+Variables (time-dependent): 993
+# rows    (time-invariant): 102924
+# rows    (time-dependent): 30803407
+
+--------------------------------------------------------------------------------
+2.1) Transform time-invariant data
+--------------------------------------------------------------------------------
+(N × ^d) table            :	 (8577, 12)
+number of missing entries :	 374 out of 102924 total
+Time elapsed: 0.181602 seconds
+
+Output
+s_all, binary features    :	 (8577, 152)
+Time elapsed: 1.422957 seconds
+
+--------------------------------------------------------------------------------
+3.1) Post-filter time-invariant data
+--------------------------------------------------------------------------------
+Original       : 152
+Nearly-constant: 115
+Correlated     : 3
+Time elapsed: 1.491524 seconds
+
+Output
+s: shape=(8577, 34), density=0.267
+Total time: 1.550841 seconds
+
+
+--------------------------------------------------------------------------------
+2.2) Transform time-dependent data
+--------------------------------------------------------------------------------
+Total variables    : 993
+Frequent variables : ['220048', 'DiaBP', 'HR', 'RR', 'SpO2', 'SysBP']
+M₁ = 6
+M₂ = 987
+k  = 3 ['min', 'max', 'mean']
+
+Transforming each example...
+(freq) number of missing entries :	 179265 out of 8577×48×6=2470176 total
+(freq) number of imputed entries :	 97328
+ 220048  12061
+  DiaBP  21938
+     HR  10707
+     RR  12353
+   SpO2  18436
+  SysBP  21833
+(freq) number of not imputed entries :	 81937
+ 220048  17011
+  DiaBP  13092
+     HR  12860
+     RR  12621
+   SpO2  13263
+  SysBP  13090
+(non-freq) number of missing entries :	 379890514 out of 8577×48×987=406343952 total
+
+(N × L × ^D) table :	 (8577, 48, 1023)
+Time elapsed: 529.796317 seconds
+Discretizing features...
+
+Processing 1017 non-boolean variable columns...
+    Binning numeric variables by quintile...
+    Converting variables to binary features
+Finished discretizing features
+
+Output
+X_all: shape=(8577, 48, 3071), density=0.032
+Time elapsed: 1515.415874 seconds
+
+--------------------------------------------------------------------------------
+3.2) Post-filter time-dependent data
+--------------------------------------------------------------------------------
+(8577, 48, 3071) 0.03224463116576165
+Original : 3071
+Nearly-constant: 1598
+*** time:  1087.531370639801
+Correlated     : 75
+*** time:  1911.5231194496155
+
+Output
+X: shape=(8577, 48, 1398), density=0.060
+(8577, 48, 1398) 0.059674307789588654
+Time elapsed: 3426.949128 seconds
+
+Output
+X: shape=(8577, 48, 1398), density=0.060
+Total time: 3450.937050 seconds
+

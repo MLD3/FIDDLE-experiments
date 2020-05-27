@@ -1,0 +1,116 @@
+Input data file: /data4/tangsp/FIDDLE/mimic3_experiments/data/processed/features/benchmark,outcome=mortality,T=48.0,dt=1.0/input_data.p
+
+Input arguments:
+    T      = 48
+    dt     = 12.0
+    θ₁     = 0.1
+    θ₂     = 0.1
+    θ_freq = 1.0
+    k      = 3 ['min', 'max', 'mean']
+binarize = yes
+
+N = 8577
+L = 4
+
+
+================================================================================
+1) Pre-filter
+================================================================================
+Remove rows not in population
+Remove rows with t outside of [0, 48]
+Remove rare variables (<= 0.1)
+Total variables     : 5405
+Rare variables      : 4400
+Remaining variables : 1005
+# rows (original)   : 33684409
+# rows (filtered)   : 30906331
+
+================================================================================
+2) Transform; 3) Post-filter
+================================================================================
+
+--------------------------------------------------------------------------------
+*) Detecting value types
+--------------------------------------------------------------------------------
+Saved as: ../data/features,ablations/impute,benchmark,outcome=mortality,T=48.0,dt=12.0/value_types.csv
+
+--------------------------------------------------------------------------------
+*) Separate time-invariant and time-dependent
+--------------------------------------------------------------------------------
+Variables (time-invariant): 12
+Variables (time-dependent): 993
+# rows    (time-invariant): 102924
+# rows    (time-dependent): 30803407
+
+--------------------------------------------------------------------------------
+2-A) Transform time-invariant data
+--------------------------------------------------------------------------------
+(N × ^d) table            :	 (8577, 12)
+number of missing entries :	 374 out of 102924 total
+Time elapsed: 0.101552 seconds
+
+Output
+s_all, binary features    :	 (8577, 152)
+Time elapsed: 1.302717 seconds
+
+--------------------------------------------------------------------------------
+3-A) Post-filter time-invariant data
+--------------------------------------------------------------------------------
+Original       : 152
+Nearly-constant: 115
+Correlated     : 3
+Time elapsed: 1.317200 seconds
+
+Output
+s: shape=(8577, 34), density=0.267
+Total time: 1.348345 seconds
+
+
+--------------------------------------------------------------------------------
+2-B) Transform time-dependent data
+--------------------------------------------------------------------------------
+Total variables    : 993
+Frequent variables : ['220046', '220047', '220048', '220048: AF (Atrial Fibrillation)', '220048: SR (Sinus Rhythm)', '220048: ST (Sinus Tachycardia) ', '220052', '220059', '220060', '220061', '220074', '220181', '220292', '220293', '220339', '220949', '220949_InputRoute', '220949_InputRoute: Continuous IV', '220949_InputRoute: Continuous Med', '220949_Rate', '221668', '221668_InputRoute', '221668_InputRoute: Continuous Med', '221668_Rate', '222168', '222168_InputRoute', '222168_InputRoute: Continuous Med', '222168_Rate', '223751', '223752', '223769', '223770', '223780', '223780: No/Not Sedated', '223782', '223783', '223783: Not Indicated', '223784', '223792', '223792: Repositioned', '223796', '223796: None', '223834', '223835', '223873', '223874', '223875', '223876', '223916', '223916: Verbal', '223934', '223934: Easily Palpable', '223943', '223943: Easily Palpable', '223988', '223988: Clear', '223991', '223999', '223999: Teeth/Tissue WNL', '224001', '224001: NPO', '224003', '224003: Soft', '224023', '224031', '224031: None', '224032', '224073', '224076', '224077', '224077: Explanation', '224082', '224082: Side to Side', '224085', '224085: 2 Person Assist', '224088', '224088: None', '224089', '224089: Compression sleeve', '224161', '224162', '224168', '224263', '224267', '224274', '224275', '224276', '224277', '224288', '224289', '224641', '224650', '224650: None', "224650: PVC's", '224684', '224685', '224687', '224688', '224689', '224695', '224697', '224738', '224756', '224756: Localizes', '225054', '225054: On ', '225158', '225158_InputRoute', '225158_InputRoute: Continuous IV', '225158_InputRoute: Continuous Med', '225158_Rate', '225166', '225166_InputRoute', '225166_InputRoute: Continuous IV', '225166_Rate', '225185', '225187', '225231', '225231: WNL', '225234', '225234: WNL', '225752', '225754', '225755', '225792', '225828', '225828_InputRoute', '225828_InputRoute: Continuous IV', '225828_Rate', '225942', '225942_InputRoute', '225942_InputRoute: Continuous Med', '225942_Rate', '225943', '225943_InputRoute', '225943_InputRoute: Continuous Med', '225943_Rate', '226137', '226138', '226168', '226168: Swab', '226253', '226559', '226732', '226732: Endotracheal tube', '226732: Nasal cannula', '226871', '226873', '227292', '227367', '227368', '227947', '227947: Treatment interference', '227948', '227948: Soft limb', '227950', '227950: Both arms', '227954', '227955', '227955: IV Fluid', '227958', '227959', '227959: Continued', '227969', '227969: Adequate lighting', '227969: Bed locked in low position', '227969: Call light within reach', '228306', 'DiaBP', 'HR', 'RR', 'SpO2', 'SysBP', 'Temperature']
+M₁ = 174
+M₂ = 819
+k  = 3 ['min', 'max', 'mean']
+
+Transforming each example...
+DONE: Transforming each example...
+(freq) number of missing entries :	 2857726 out of 8577×4×174=5969592 total
+(freq) number of imputed entries :	 520478
+(freq) number of not imputed entries :	 2337248
+(non-freq) number of missing entries :	 21826602 out of 8577×4×819=28098252 total
+
+(N × L × ^D) table :	 (8577, 4, 1863)
+Time elapsed: 281.204015 seconds
+Discretizing features...
+
+Processing 1689 non-boolean variable columns...
+    Binning numeric variables by quintile...
+    Converting variables to binary features
+Finished discretizing features
+
+Output
+X_all: shape=(8577, 4, 4361), density=0.200
+Time elapsed: 352.272896 seconds
+
+--------------------------------------------------------------------------------
+3-B) Post-filter time-dependent data
+--------------------------------------------------------------------------------
+(8577, 4, 4361) 0.1997262774381243
+Original : 4361
+Nearly-constant: 2003
+*** time:  168.0733094215393
+Correlated     : 420
+*** time:  338.4725503921509
+
+Output
+X: shape=(8577, 4, 1938), density=0.207
+(8577, 4, 1938) 0.20749838198566184
+Time elapsed: 690.750777 seconds
+
+Output
+X: shape=(8577, 4, 1938), density=0.207
+Total time: 699.855231 seconds
+

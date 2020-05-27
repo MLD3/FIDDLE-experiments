@@ -1,0 +1,679 @@
+Input data file: ../data/processed//features/benchmark,outcome=mortality,T=48.0,dt=1.0/input_data.p
+
+Input arguments:
+    T      = 48
+    dt     = 24.0
+    θ₁     = 0.001
+    θ₂     = 0.001
+    θ_freq = 1.0
+    k      = 3 ['min', 'max', 'mean']
+binarize = yes
+
+N = 8577
+L = 2
+
+
+================================================================================
+1) Pre-filter
+================================================================================
+Remove rows not in population
+Remove rows with t outside of [0, 48]
+Remove rare variables (<= 0.001)
+Total variables     : 5405
+Rare variables      : 1524
+Remaining variables : 3881
+# rows (original)   : 33684409
+# rows (filtered)   : 33661000
+
+================================================================================
+2) Transform; 3) Post-filter
+================================================================================
+
+--------------------------------------------------------------------------------
+*) Detecting value types
+--------------------------------------------------------------------------------
+Saved as: ../data/processed//features,comparison/dt=24.0,benchmark,outcome=mortality,T=48.0,dt=1.0/value_types.csv
+
+--------------------------------------------------------------------------------
+*) Separate time-invariant and time-dependent
+--------------------------------------------------------------------------------
+Variables (time-invariant): 12
+Variables (time-dependent): 3869
+# rows    (time-invariant): 102924
+# rows    (time-dependent): 33558076
+
+--------------------------------------------------------------------------------
+2.1) Transform time-invariant data
+--------------------------------------------------------------------------------
+(N × ^d) table            :	 (8577, 12)
+number of missing entries :	 374 out of 102924 total
+Time elapsed: 0.162123 seconds
+
+Output
+s_all, binary features    :	 (8577, 152)
+Time elapsed: 1.713506 seconds
+
+--------------------------------------------------------------------------------
+3.1) Post-filter time-invariant data
+--------------------------------------------------------------------------------
+Original       : 152
+Nearly-constant: 53
+Correlated     : 3
+Time elapsed: 1.758895 seconds
+
+Output
+s: shape=(8577, 96), density=0.116
+Total time: 1.797224 seconds
+
+
+--------------------------------------------------------------------------------
+2.2) Transform time-dependent data
+--------------------------------------------------------------------------------
+Total variables    : 3869
+Frequent variables : ['220046', '220047', '220048', '220048: AF (Atrial Fibrillation)', '220048: SB (Sinus Bradycardia)', '220048: SR (Sinus Rhythm)', '220048: ST (Sinus Tachycardia) ', '220052', '220056', '220058', '220059', '220060', '220061', '220074', '220181', '220292', '220293', '220339', '220949', '220949_Amount', '220949_InputRoute', '220949_InputRoute: Continuous IV', '220949_InputRoute: Continuous Med', '220949_InputRoute: Drug Push', '220949_Rate', '221668', '221668_InputRoute', '221668_InputRoute: Continuous Med', '221668_Rate', '221744', '221744_InputRoute', '221749', '221749_InputRoute', '221749_InputRoute: Continuous Med', '221749_Rate', '221906', '221906_InputRoute', '221906_InputRoute: Continuous Med', '221906_Rate', '222168', '222168_InputRoute', '222168_InputRoute: Continuous Med', '222168_Rate', '223258', '223258_InputRoute', '223258_InputRoute: Continuous Med', '223258_Rate', '223751', '223752', '223769', '223770', '223772', '223780', '223780: No/Not Sedated', '223782', '223782: None', '223783', '223783: Not Indicated', '223784', '223784: At Rest', '223792', '223792: Backrub', '223792: IV Push', '223792: Repositioned', '223796', '223796: None', '223834', '223835', '223873', '223874', '223875', '223876', '223916', '223916: Nail Bed', '223916: Verbal', '223934', '223934: Easily Palpable', '223943', '223943: Easily Palpable', '223951', '223951: Normal <3 Seconds', '223988', '223988: Clear', '223991', '223991: Strong', '223991: Weak', '223999', '223999: Teeth/Tissue WNL', '224001', '224001: NPO', '224003', '224003: Soft', '224003: Soft Distended', '224023', '224023: Children', '224023: Spouse', '224024', '224024: Family Visited', '224031', '224031: General', '224031: None', '224032', '224038', '224040', '224073', '224073: Activity', '224073: Plan of Care', '224076', '224076: None', '224077', '224077: Explanation', '224082', '224082: Back', '224082: Side to Side', '224082: Turns by Self', '224085', '224085: 2 Person Assist', '224088', '224088: None', '224089', '224089: Compression sleeve', '224161', '224162', '224168', '224226', '224261', '224263', '224264', '224267', '224274', '224275', '224276', '224277', '224279', '224280', '224281', '224281: WNL', '224282', '224284', '224287', '224288', '224289', '224289: WNL', '224290', '224308', '224308: Normal <3 Seconds', '224564', '224565', '224641', '224650', '224650: None', "224650: PAC's", "224650: PVC's", '224684', '224685', '224686', '224687', '224688', '224689', '224695', '224696', '224697', '224701', '224738', '224756', '224756: Localizes', '224842', '224848', '224851', '224851: Dry and intact', '225054', '225054: On ', '225103', '225152', '225152_InputRoute', '225152_InputRoute: Continuous Med', '225152_Rate', '225158', '225158_InputRoute', '225158_InputRoute: Continuous IV', '225158_InputRoute: Continuous Med', '225158_Rate', '225166', '225166_InputRoute', '225166_InputRoute: Continuous IV', '225166_Rate', '225184', '225185', '225187', '225231', '225231: WNL', '225234', '225234: WNL', '225312', '225752', '225754', '225755', '225792', '225823', '225823_InputRoute', '225823_InputRoute: Continuous IV', '225823_Rate', '225828', '225828_InputRoute', '225828_InputRoute: Continuous IV', '225828_Rate', '225942', '225942_InputRoute', '225942_InputRoute: Continuous Med', '225942_Rate', '225943', '225943_InputRoute', '225943_InputRoute: Continuous Med', '225943_Rate', '226105', '226105: Appropriate', '226107', '226113', '226137', '226138', '226168', '226168: Swab', '226169', '226253', '226329', '226452', '226452_Amount', '226452_InputRoute', '226452_InputRoute: Bolus', '226559', '226588', '226732', '226732: Endotracheal tube', '226732: Nasal cannula', '226871', '226873', '227292', '227293', '227349', '227367', '227368', '227688', '227947', '227947: Treatment interference', '227948', '227948: Soft limb', '227950', '227950: Both arms', '227954', '227954: Asleep', '227955', '227955: IV Fluid', '227958', '227958: 1:1 Time with patient', '227958: Adequate lighting', '227958: Bed locked in low position', '227958: Lines and tubes concealed', '227959', '227959: Continued', '227969', '227969: Adequate lighting', '227969: Bed alarm activated', '227969: Bed locked in low position', '227969: Call light within reach', '227969: Hazard-free environment', '227969: Lines and tubes concealed', '227969: Quiet, calm space', '228099', '228100', '228305', '228306', '228306: 2 Person Assist', '50868', '50882', '50931', 'DiaBP', 'HR', 'RR', 'SpO2', 'SysBP', 'Temperature', 'Weight']
+M₁ = 282
+M₂ = 3587
+k  = 3 ['min', 'max', 'mean']
+
+Transforming each example...
+(freq) number of missing entries :	 2467286 out of 8577×2×282=4837428 total
+(freq) number of imputed entries :	 224523
+                             220046   111
+                             220047   110
+                             220048     5
+   220048: AF (Atrial Fibrillation)   256
+     220048: SB (Sinus Bradycardia)   799
+          220048: SR (Sinus Rhythm)   452
+    220048: ST (Sinus Tachycardia)   1143
+                             220052   463
+                             220056   672
+                             220058   677
+                             220059   411
+                             220060   411
+                             220061   419
+                             220074   542
+                             220181  1114
+                             220292  1575
+                             220293  1574
+                             220339  1559
+                             220949   741
+                      220949_Amount   717
+                  220949_InputRoute   741
+   220949_InputRoute: Continuous IV   528
+  220949_InputRoute: Continuous Med   908
+       220949_InputRoute: Drug Push   712
+                        220949_Rate   843
+                             221668   623
+                  221668_InputRoute   623
+  221668_InputRoute: Continuous Med   360
+                        221668_Rate   360
+                             221744   898
+                  221744_InputRoute   898
+                             221749   874
+                  221749_InputRoute   874
+  221749_InputRoute: Continuous Med   874
+                        221749_Rate   874
+                             221906   487
+                  221906_InputRoute   487
+  221906_InputRoute: Continuous Med   487
+                        221906_Rate   487
+                             222168  1775
+                  222168_InputRoute  1775
+  222168_InputRoute: Continuous Med  1762
+                        222168_Rate  1762
+                             223258   651
+                  223258_InputRoute   651
+  223258_InputRoute: Continuous Med   665
+                        223258_Rate   665
+                             223751  1134
+                             223752  1129
+                             223769   131
+                             223770   123
+                             223772   222
+                             223780   669
+             223780: No/Not Sedated   684
+                             223782   892
+                       223782: None  1343
+                             223783   446
+              223783: Not Indicated  1225
+                             223784  1178
+                    223784: At Rest  1303
+                             223792    81
+                    223792: Backrub   923
+                    223792: IV Push  1327
+               223792: Repositioned   815
+                             223796  1349
+                       223796: None  1341
+                             223834  1099
+                             223835  1292
+                             223873  1579
+                             223874  1570
+                             223875  1566
+                             223876  1574
+                             223916   197
+                   223916: Nail Bed  1100
+                     223916: Verbal   422
+                             223934   394
+            223934: Easily Palpable   976
+                             223943   405
+            223943: Easily Palpable   992
+                             223951  1164
+          223951: Normal <3 Seconds  1157
+                             223988    12
+                      223988: Clear   416
+                             223991   511
+                     223991: Strong  1089
+                       223991: Weak  1299
+                             223999    28
+           223999: Teeth/Tissue WNL   207
+                             224001    22
+                        224001: NPO  2399
+                             224003    29
+                       224003: Soft   780
+             224003: Soft Distended  1308
+                             224023   927
+                   224023: Children  1038
+                     224023: Spouse   653
+                             224024  1520
+             224024: Family Visited  1668
+                             224031   201
+                    224031: General   581
+                       224031: None  1480
+                             224032   293
+                             224038   200
+                             224040   118
+                             224073   867
+                   224073: Activity  1537
+               224073: Plan of Care  1661
+                             224076   868
+                       224076: None  1459
+                             224077   885
+                224077: Explanation   887
+                             224082    57
+                       224082: Back  1590
+               224082: Side to Side   732
+              224082: Turns by Self   617
+                             224085    18
+            224085: 2 Person Assist   518
+                             224088   266
+                       224088: None   428
+                             224089   184
+         224089: Compression sleeve   157
+                             224161   140
+                             224162   138
+                             224168    15
+                             224226    98
+                             224261   113
+                             224263    98
+                             224264    83
+                             224267   109
+                             224274   302
+                             224275   526
+                             224276   333
+                             224277   584
+                             224279   112
+                             224280   122
+                             224281   129
+                        224281: WNL   192
+                             224282   116
+                             224284   343
+                             224287   370
+                             224288   407
+                             224289   404
+                        224289: WNL   437
+                             224290   372
+                             224308  1174
+          224308: Normal <3 Seconds  1171
+                             224564   135
+                             224565   123
+                             224641    14
+                             224650    38
+                       224650: None   290
+                      224650: PAC's  1029
+                      224650: PVC's  1161
+                             224684  2067
+                             224685  1588
+                             224686  1571
+                             224687  1579
+                             224688  2046
+                             224689  1542
+                             224695  1587
+                             224696  2019
+                             224697  1563
+                             224701  1598
+                             224738  2144
+                             224756   232
+                  224756: Localizes   405
+                             224842   196
+                             224848   149
+                             224851    99
+             224851: Dry and intact   170
+                             225054   132
+                        225054: On    307
+                             225103  6068
+                             225152   235
+                  225152_InputRoute   235
+  225152_InputRoute: Continuous Med   205
+                        225152_Rate   206
+                             225158  1000
+                  225158_InputRoute  1000
+   225158_InputRoute: Continuous IV  1102
+  225158_InputRoute: Continuous Med  1269
+                        225158_Rate   999
+                             225166  1165
+                  225166_InputRoute  1165
+   225166_InputRoute: Continuous IV  1165
+                        225166_Rate  1165
+                             225184  1362
+                             225185   499
+                             225187   432
+                             225231   608
+                        225231: WNL   637
+                             225234   681
+                        225234: WNL   731
+                             225312   260
+                             225752   301
+                             225754   600
+                             225755   682
+                             225792  1171
+                             225823   277
+                  225823_InputRoute   277
+   225823_InputRoute: Continuous IV   275
+                        225823_Rate   275
+                             225828  1332
+                  225828_InputRoute  1332
+   225828_InputRoute: Continuous IV   580
+                        225828_Rate   580
+                             225942   246
+                  225942_InputRoute   246
+  225942_InputRoute: Continuous Med   246
+                        225942_Rate   246
+                             225943  1595
+                  225943_InputRoute  1595
+  225943_InputRoute: Continuous Med  1722
+                        225943_Rate  1722
+                             226105    25
+                226105: Appropriate   141
+                             226107   405
+                             226113   138
+                             226137   684
+                             226138   614
+                             226168   862
+                       226168: Swab  1255
+                             226169  1354
+                             226253   243
+                             226329   184
+                             226452   428
+                      226452_Amount   428
+                  226452_InputRoute   428
+           226452_InputRoute: Bolus   428
+                             226559   290
+                             226588   146
+                             226732   138
+          226732: Endotracheal tube  1375
+              226732: Nasal cannula  1059
+                             226871  2040
+                             226873  2039
+                             227292   407
+                             227293   133
+                             227349  1352
+                             227367   690
+                             227368   620
+                             227688  6882
+                             227947  1290
+     227947: Treatment interference  1320
+                             227948  1188
+                  227948: Soft limb  1225
+                             227950  1212
+                  227950: Both arms  1278
+                             227954  1233
+                     227954: Asleep  1321
+                             227955  1222
+                   227955: IV Fluid  1252
+                             227958  1229
+      227958: 1:1 Time with patient  1286
+          227958: Adequate lighting   995
+ 227958: Bed locked in low position   969
+  227958: Lines and tubes concealed   986
+                             227959  1247
+                  227959: Continued  1243
+                             227969    90
+          227969: Adequate lighting   340
+        227969: Bed alarm activated  1176
+ 227969: Bed locked in low position   307
+    227969: Call light within reach   660
+    227969: Hazard-free environment  1217
+  227969: Lines and tubes concealed  1209
+          227969: Quiet, calm space  1301
+                             228099   445
+                             228100   364
+                             228305   208
+                             228306    21
+            228306: 2 Person Assist   274
+                              50868   212
+                              50882   202
+                              50931   222
+                              DiaBP     5
+                                 HR     3
+                                 RR    10
+                               SpO2    11
+                              SysBP     5
+                        Temperature    79
+                             Weight  4010
+(freq) number of not imputed entries :	 2242763
+                             220046    171
+                             220047    171
+                             220048    203
+   220048: AF (Atrial Fibrillation)  14103
+     220048: SB (Sinus Bradycardia)  13407
+          220048: SR (Sinus Rhythm)   2994
+    220048: ST (Sinus Tachycardia)    8662
+                             220052   9037
+                             220056   9138
+                             220058   9135
+                             220059  15224
+                             220060  15224
+                             220061  15206
+                             220074  11791
+                             220181   1542
+                             220292   8019
+                             220293   8010
+                             220339   7984
+                             220949   3579
+                      220949_Amount   6014
+                  220949_InputRoute   3579
+   220949_InputRoute: Continuous IV  12863
+  220949_InputRoute: Continuous Med  10631
+       220949_InputRoute: Drug Push   6042
+                        220949_Rate   8847
+                             221668  13491
+                  221668_InputRoute  13491
+  221668_InputRoute: Continuous Med  14397
+                        221668_Rate  14397
+                             221744  12271
+                  221744_InputRoute  12271
+                             221749  13626
+                  221749_InputRoute  13626
+  221749_InputRoute: Continuous Med  13626
+                        221749_Rate  13626
+                             221906  14442
+                  221906_InputRoute  14442
+  221906_InputRoute: Continuous Med  14442
+                        221906_Rate  14442
+                             222168  10771
+                  222168_InputRoute  10771
+  222168_InputRoute: Continuous Med  10834
+                        222168_Rate  10834
+                             223258  11205
+                  223258_InputRoute  11205
+  223258_InputRoute: Continuous Med  14578
+                        223258_Rate  14562
+                             223751   1678
+                             223752   1680
+                             223769    176
+                             223770    171
+                             223772  15995
+                             223780   6880
+             223780: No/Not Sedated   8339
+                             223782   2904
+                       223782: None   6972
+                             223783    765
+              223783: Not Indicated   3206
+                             223784   5295
+                    223784: At Rest   7978
+                             223792   2149
+                    223792: Backrub  10475
+                    223792: IV Push   9226
+               223792: Repositioned   5855
+                             223796   6204
+                       223796: None   6333
+                             223834   6055
+                             223835   6181
+                             223873   8009
+                             223874   8070
+                             223875   8126
+                             223876   8017
+                             223916   2497
+                   223916: Nail Bed  12251
+                     223916: Verbal   3614
+                             223934    493
+            223934: Easily Palpable   4544
+                             223943    487
+            223943: Easily Palpable   4573
+                             223951   6661
+          223951: Normal <3 Seconds   6860
+                             223988    165
+                      223988: Clear   1123
+                             223991   1212
+                     223991: Strong   5411
+                       223991: Weak   8763
+                             223999    245
+           223999: Teeth/Tissue WNL   1161
+                             224001    339
+                        224001: NPO   1845
+                             224003    201
+                       224003: Soft   2536
+             224003: Soft Distended   7724
+                             224023   1368
+                   224023: Children   7521
+                     224023: Spouse   9703
+                             224024   2944
+             224024: Family Visited   5458
+                             224031    409
+                    224031: General   9935
+                       224031: None   4567
+                             224032   8149
+                             224038   9734
+                             224040  12031
+                             224073   1478
+                   224073: Activity   5945
+               224073: Plan of Care   3867
+                             224076   1465
+                       224076: None   5920
+                             224077   1507
+                224077: Explanation   1513
+                             224082    183
+                       224082: Back   5673
+               224082: Side to Side    963
+              224082: Turns by Self  11252
+                             224085   5835
+            224085: 2 Person Assist   6865
+                             224088   5456
+                       224088: None   6097
+                             224089   3375
+         224089: Compression sleeve   6023
+                             224161    179
+                             224162    180
+                             224168    167
+                             224226  12620
+                             224261  12684
+                             224263  12232
+                             224264  15322
+                             224267  15285
+                             224274  14090
+                             224275   6588
+                             224276  13898
+                             224277   7831
+                             224279  12489
+                             224280  12312
+                             224281  12240
+                        224281: WNL  12809
+                             224282  12765
+                             224284  10451
+                             224287   9643
+                             224288   9158
+                             224289   9150
+                        224289: WNL   9323
+                             224290   9771
+                             224308   6719
+          224308: Normal <3 Seconds   6913
+                             224564  12396
+                             224565  12476
+                             224641    159
+                             224650    500
+                       224650: None    953
+                      224650: PAC's  12208
+                      224650: PVC's   9651
+                             224684   8846
+                             224685   8026
+                             224686  10272
+                             224687   8005
+                             224688   8816
+                             224689   8173
+                             224695   8071
+                             224696   9588
+                             224697   8034
+                             224701  10506
+                             224738   8477
+                             224756   2558
+                  224756: Localizes   3503
+                             224842  16107
+                             224848  11593
+                             224851  12163
+             224851: Dry and intact  12423
+                             225054   5057
+                        225054: On    5503
+                             225103   3543
+                             225152  15205
+                  225152_InputRoute  15205
+  225152_InputRoute: Continuous Med  15309
+                        225152_Rate  15305
+                             225158   1732
+                  225158_InputRoute   1732
+   225158_InputRoute: Continuous IV   4221
+  225158_InputRoute: Continuous Med   8144
+                        225158_Rate   2080
+                             225166  10282
+                  225166_InputRoute  10282
+   225166_InputRoute: Continuous IV  10282
+                        225166_Rate  10282
+                             225184   5206
+                             225185   2995
+                             225187   2968
+                             225231   6732
+                        225231: WNL   6849
+                             225234   7937
+                        225234: WNL   8050
+                             225312  15877
+                             225752   9114
+                             225754   6730
+                             225755   7880
+                             225792   9016
+                             225823  15213
+                  225823_InputRoute  15213
+   225823_InputRoute: Continuous IV  15225
+                        225823_Rate  15225
+                             225828  11864
+                  225828_InputRoute  11864
+   225828_InputRoute: Continuous IV  13889
+                        225828_Rate  13889
+                             225942  14741
+                  225942_InputRoute  14741
+  225942_InputRoute: Continuous Med  14741
+                        225942_Rate  14741
+                             225943   6915
+                  225943_InputRoute   6915
+  225943_InputRoute: Continuous Med   9642
+                        225943_Rate   9641
+                             226105  12751
+                226105: Appropriate  13513
+                             226107   9272
+                             226113  12307
+                             226137   7852
+                             226138   6634
+                             226168   1596
+                       226168: Swab   3534
+                             226169   9192
+                             226253    286
+                             226329  16139
+                             226452   8777
+                      226452_Amount   8777
+                  226452_InputRoute   8777
+           226452_InputRoute: Bolus   8777
+                             226559   2050
+                             226588  14797
+                             226732    311
+          226732: Endotracheal tube   9190
+              226732: Nasal cannula   7391
+                             226871   8965
+                             226873   8973
+                             227292   9162
+                             227293  12217
+                             227349   8086
+                             227367   7785
+                             227368   6550
+                             227688   1576
+                             227947  10120
+     227947: Treatment interference  10203
+                             227948  10055
+                  227948: Soft limb  10284
+                             227950   9891
+                  227950: Both arms  10403
+                             227954  10159
+                     227954: Asleep  10865
+                             227955  10244
+                   227955: IV Fluid  10388
+                             227958  10179
+      227958: 1:1 Time with patient  10621
+          227958: Adequate lighting  12072
+ 227958: Bed locked in low position  11982
+  227958: Lines and tubes concealed  12237
+                             227959  10133
+                  227959: Continued  10256
+                             227969   3375
+          227969: Adequate lighting   3711
+        227969: Bed alarm activated   7882
+ 227969: Bed locked in low position   3598
+    227969: Call light within reach   5811
+    227969: Hazard-free environment   7298
+  227969: Lines and tubes concealed   6710
+          227969: Quiet, calm space   8500
+                             228099  11487
+                             228100  10730
+                             228305  12223
+                             228306  11536
+            228306: 2 Person Assist  11957
+                              50868    189
+                              50882    153
+                              50931    203
+                              DiaBP    159
+                                 HR    159
+                                 RR    164
+                               SpO2    160
+                              SysBP    159
+                        Temperature    711
+                             Weight    653
+(non-freq) number of missing entries :	 57511031 out of 8577×2×3587=61531398 total
+
+(N × L × ^D) table :	 (8577, 2, 5279)
+Time elapsed: 869.944841 seconds
+Discretizing features...
+
+Processing 4997 non-boolean variable columns...
+    Binning numeric variables by quintile...
+    Converting variables to binary features
+Finished discretizing features
+
+Output
+X_all: shape=(8577, 2, 11794), density=0.107
+Time elapsed: 1153.544049 seconds
+
+--------------------------------------------------------------------------------
+3.2) Post-filter time-dependent data
+--------------------------------------------------------------------------------
+(8577, 2, 11794) 0.10679719408431662
+Original : 11794
+Nearly-constant: 2484
+*** time:  774.8323135375977
+Correlated     : 979
+*** time:  1243.2908201217651
+
+Output
+X: shape=(8577, 2, 8331), density=0.075
+(8577, 2, 8331) 0.07491540093625655
+Time elapsed: 2396.871047 seconds
+
+Output
+X: shape=(8577, 2, 8331), density=0.075
+Total time: 2403.412948 seconds
+
