@@ -1,0 +1,3 @@
+[submodule "FIDDLE"]
+	path = FIDDLE
+	url = https://github.com/MLD3/FIDDLE
