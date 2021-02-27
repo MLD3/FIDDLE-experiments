@@ -106,6 +106,8 @@ def check_nrows():
         for df in pd.read_csv(mimic3_path + '{}.csv'.format(fname), chunksize=10000000):
             actual_rows += len(df)
         assert n_rows == actual_rows, 'Expected {}, got {}'.format(n_rows, actual_rows)
+        print('Passed')
+        print()
 
 def merge_items_table():
     """
@@ -241,7 +243,7 @@ def extract_invariant():
     invariant = pd.merge(examples, patients, on='SUBJECT_ID', how='left')
     invariant = pd.merge(invariant, admissions, on=['SUBJECT_ID', 'HADM_ID'], how='left')
     
-    invariant['AGE'] = invariant[['INTIME', 'DOB']].apply(lambda x: (x.INTIME - x.DOB).total_seconds(), axis=1) / (3600 * 24 * 365)
+    invariant['AGE'] = invariant[['INTIME', 'DOB']].apply(lambda x: (x.INTIME.to_pydatetime() - x.DOB.to_pydatetime()).total_seconds(), axis=1) / (3600 * 24 * 365)
     if (invariant.AGE > 89).any():
         # median of redacted ages is 91.4
         # https://mimic.physionet.org/mimictables/patients/#important-considerations
