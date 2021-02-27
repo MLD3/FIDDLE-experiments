@@ -1,3 +1,4 @@
 [submodule "FIDDLE"]
 	path = FIDDLE
 	url = https://github.com/MLD3/FIDDLE
+	branch = v0.1.0-reproducible
