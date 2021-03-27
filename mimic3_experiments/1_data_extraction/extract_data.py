@@ -241,7 +241,7 @@ def extract_invariant():
     invariant = pd.merge(examples, patients, on='SUBJECT_ID', how='left')
     invariant = pd.merge(invariant, admissions, on=['SUBJECT_ID', 'HADM_ID'], how='left')
     
-    invariant['AGE'] = invariant[['INTIME', 'DOB']].apply(lambda x: (x.INTIME - x.DOB).total_seconds(), axis=1) / (3600 * 24 * 365)
+    invariant['AGE'] = invariant[['INTIME', 'DOB']].apply(lambda x: (x.INTIME.to_pydatetime() - x.DOB.to_pydatetime()).total_seconds(), axis=1) / (3600 * 24 * 365)
     if (invariant.AGE > 89).any():
         # median of redacted ages is 91.4
         # https://mimic.physionet.org/mimictables/patients/#important-considerations
