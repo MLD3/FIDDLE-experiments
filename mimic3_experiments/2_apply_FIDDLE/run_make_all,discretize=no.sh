@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euxo pipefail
 
-export PYTHONPATH="../../"
+export PYTHONPATH="../../FIDDLE/"
 DATAPATH=$(python -c "import yaml;print(yaml.full_load(open('../config.yaml'))['data_path']);")
 mkdir -p 'log,discretize=no'
 
