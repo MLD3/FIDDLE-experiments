@@ -1,6 +1,6 @@
 # FIDDLE experiments
 
-This repository contains code for the experiments in the JAMIA paper, [**Democratizing EHR analyses with FIDDLE: a flexible data-driven preprocessing pipeline for structured clinical data**](https://doi.org/10.1093/jamia/ocaa139) by Tang et al. (2020).
+This repository contains code for the experiments in the JAMIA paper, [**Democratizing EHR analyses with FIDDLE: a flexible data-driven preprocessing pipeline for structured clinical data**](https://doi.org/10.1093/jamia/ocaa139) by Tang et al. (2020). Please also refer to the main [FIDDLE respository](https://github.com/MLD3/FIDDLE).
 
 **IMPORTANT NOTE:** Due to updated versions of python and related packages (pandas etc.), it might be impossible to replicate the exact numerical results in the paper. Moreover, due to sheer size of the datasets, full processing requires a machine with many CPU cores and a very large RAM (at least 500GB for MIMIC-III, ~3TB for eICU). Therefore, we recommend the following options:
 - To reproduce MIMIC-III results similar to that in the paper, we recommend running the latest version of FIDDLE on the data and updating the feature dimensions in the metadata files to match the extracted feature sets. 
