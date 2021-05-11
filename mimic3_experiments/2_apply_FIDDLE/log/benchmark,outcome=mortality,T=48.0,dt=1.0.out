@@ -7,6 +7,7 @@ Input arguments:
     θ₂     = 0.001
     θ_freq = 1.0
     k      = 3 ['min', 'max', 'mean']
+binarize = yes
 
 N = 8577
 L = 48
@@ -29,7 +30,7 @@ Remaining variables : 3881
 ================================================================================
 
 --------------------------------------------------------------------------------
-*) Detecting value types
+*) Detecting and parsing value types
 --------------------------------------------------------------------------------
 Saved as: ../data/processed//features/benchmark,outcome=mortality,T=48.0,dt=1.0/value_types.csv
 
@@ -42,31 +43,31 @@ Variables (time-dependent): 3869
 # rows    (time-dependent): 33558076
 
 --------------------------------------------------------------------------------
-2.1) Transform time-invariant data
+2-A) Transform time-invariant data
 --------------------------------------------------------------------------------
 (N × ^d) table            :	 (8577, 12)
 number of missing entries :	 374 out of 102924 total
-Time elapsed: 0.106786 seconds
+Time elapsed: 0.109858 seconds
 
 Output
 s_all, binary features    :	 (8577, 152)
-Time elapsed: 2.769964 seconds
+Time elapsed: 1.422978 seconds
 
 --------------------------------------------------------------------------------
-3.1) Post-filter time-invariant data
+3-A) Post-filter time-invariant data
 --------------------------------------------------------------------------------
 Original       : 152
 Nearly-constant: 53
 Correlated     : 3
-Time elapsed: 2.788153 seconds
+Time elapsed: 1.439811 seconds
 
 Output
 s: shape=(8577, 96), density=0.116
-Total time: 2.829880 seconds
+Total time: 1.471073 seconds
 
 
 --------------------------------------------------------------------------------
-2.2) Transform time-dependent data
+2-B) Transform time-dependent data
 --------------------------------------------------------------------------------
 Total variables    : 3869
 Frequent variables : ['220048', 'DiaBP', 'HR', 'RR', 'SpO2', 'SysBP']
@@ -75,52 +76,41 @@ M₂ = 3863
 k  = 3 ['min', 'max', 'mean']
 
 Transforming each example...
+DONE: Transforming each example...
 (freq) number of missing entries :	 179265 out of 8577×48×6=2470176 total
 (freq) number of imputed entries :	 97328
- 220048  12061
-  DiaBP  21938
-     HR  10707
-     RR  12353
-   SpO2  18436
-  SysBP  21833
 (freq) number of not imputed entries :	 81937
- 220048  17011
-  DiaBP  13092
-     HR  12860
-     RR  12621
-   SpO2  13263
-  SysBP  13090
 (non-freq) number of missing entries :	 1561275820 out of 8577×48×3863=1590381648 total
 
 (N × L × ^D) table :	 (8577, 48, 3899)
-Time elapsed: 1321.287143 seconds
-
+Time elapsed: 942.590008 seconds
 Discretizing features...
+
 Processing 3893 non-boolean variable columns...
     Binning numeric variables by quintile...
     Converting variables to binary features
 Finished discretizing features
 
 Output
-X_all: shape=(8577, 48, 9715), density=0.011
-Time elapsed: 2771.846366 seconds
+X_all: shape=(8577, 48, 9719), density=0.011
+Time elapsed: 3667.453148 seconds
 
 --------------------------------------------------------------------------------
-3.2) Post-filter time-dependent data
+3-B) Post-filter time-dependent data
 --------------------------------------------------------------------------------
-(8577, 48, 9715) 0.010855981047270952
-Original : 9715
-Nearly-constant: 2068
-*** time:  2022.7931141853333
+(8577, 48, 9719) 0.010851513105693723
+Original : 9719
+Nearly-constant: 2072
+*** time:  3407.022625207901
 Correlated     : 340
-*** time:  5027.628796815872
+*** time:  7559.830193519592
 
 Output
 X: shape=(8577, 48, 7307), density=0.013
 (8577, 48, 7307) 0.012613368624081375
-Time elapsed: 7799.543581 seconds
+Time elapsed: 11227.283840 seconds
 
 Output
 X: shape=(8577, 48, 7307), density=0.013
-Total time: 7834.630522 seconds
+Total time: 11252.228130 seconds
 

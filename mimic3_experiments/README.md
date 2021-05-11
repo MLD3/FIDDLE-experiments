@@ -29,14 +29,19 @@ We considered five prediction tasks involving three adverse outcomes:
         ARF:    {0: 13125, 1: 10495}    N = 23620
         Shock:  {0: 16629, 1: 6991}     N = 23620
         ```
-    - Run the following notebooks in order: `LabelDistribution.ipynb`, `InclusionExclusion.ipynb` and `PopulationSummary.ipynb`.
-    - The above also generates the cohort for 48h in-hospital mortality. However, we found some inconsistencies compared to the [mimic3-benchmark](https://github.com/YerevaNN/mimic3-benchmarks) (see also: [multitask benchmarking paper](https://doi.org/10.1038/s41597-019-0103-9)). To ensure a fair comparison with the benchmark feature set (and use the same train/val/test splits), we used their label definitions. Run the notebook `resources/IHM_benchmark.ipynb` to generate the final cohort for 48h in-hospital mortality prediction. 
+    - Run the following notebooks in order: `LabelDistribution.ipynb` and `InclusionExclusion.ipynb`.
+    - The above also generates the cohort for 48h in-hospital mortality in `mortality_48.0h.csv`. However, we found some inconsistencies compared to the [mimic3-benchmark](https://github.com/YerevaNN/mimic3-benchmarks) (see also: [multitask benchmarking paper](https://doi.org/10.1038/s41597-019-0103-9)). To ensure a fair comparison with the benchmark feature set (and use the same train/val/test splits), we used their label definitions, but only consider the subset of their cohort recorded using MetaVision (i.e., also in our mortality cohort). Run the notebook `resources/IHM_benchmark.ipynb` to generate the final cohort for 48h in-hospital mortality prediction in `pop.mortality_benchmark.csv`.
+    - Run `PopulationSummary.ipynb`.
 
 3. Prepare input tables for each cohort
 
     - Run `python prepare_input.py --outcome={outcome} --T={T} --dt={dt}`
     
     Note: a bash script is provided for prepare input tables for all cohorts: `./run_prepare_all.sh`
+    
+    Since `pop.mortality_benchmark.csv` is a subset of `mortality_48.0h.csv`, we only create one `input_data.p` for the larger `mortality_48.0h.csv` and copy it into two output folders. 
+
+4. Run the notebook `FixInputData.ipynb` to fix some issues in pickled dataframes so that the output feature dimensions match with those reported in the paper. 
 
 ### 2) Apply FIDDLE
 
