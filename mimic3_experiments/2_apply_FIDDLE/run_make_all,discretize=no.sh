@@ -9,7 +9,8 @@ OUTCOME=ARF
 T=4.0
 dt=1.0
 python -m FIDDLE.run \
-    --data_path="$DATAPATH/features,discretize=no/outcome=$OUTCOME,T=$T,dt=$dt/" \
+    --output_dir="$DATAPATH/features,discretize=no/outcome=$OUTCOME,T=$T,dt=$dt/" \
+    --data_fname="$DATAPATH/features/outcome=$OUTCOME,T=$T,dt=$dt/input_data.p" \
     --population="$DATAPATH/population/${OUTCOME}_${T}h.csv" \
     --T=$T \
     --dt=$dt \
@@ -25,7 +26,8 @@ OUTCOME=ARF
 T=12.0
 dt=1.0
 python -m FIDDLE.run \
-    --data_path="$DATAPATH/features,discretize=no/outcome=$OUTCOME,T=$T,dt=$dt/" \
+    --output_dir="$DATAPATH/features,discretize=no/outcome=$OUTCOME,T=$T,dt=$dt/" \
+    --data_fname="$DATAPATH/features/outcome=$OUTCOME,T=$T,dt=$dt/input_data.p" \
     --population="$DATAPATH/population/${OUTCOME}_${T}h.csv" \
     --T=$T \
     --dt=$dt \
@@ -41,7 +43,8 @@ OUTCOME=Shock
 T=4.0
 dt=1.0
 python -m FIDDLE.run \
-    --data_path="$DATAPATH/features,discretize=no/outcome=$OUTCOME,T=$T,dt=$dt/" \
+    --output_dir="$DATAPATH/features,discretize=no/outcome=$OUTCOME,T=$T,dt=$dt/" \
+    --data_fname="$DATAPATH/features/outcome=$OUTCOME,T=$T,dt=$dt/input_data.p" \
     --population="$DATAPATH/population/${OUTCOME}_${T}h.csv" \
     --T=$T \
     --dt=$dt \
@@ -57,7 +60,8 @@ OUTCOME=Shock
 T=12.0
 dt=1.0
 python -m FIDDLE.run \
-    --data_path="$DATAPATH/features,discretize=no/outcome=$OUTCOME,T=$T,dt=$dt/" \
+    --output_dir="$DATAPATH/features,discretize=no/outcome=$OUTCOME,T=$T,dt=$dt/" \
+    --data_fname="$DATAPATH/features/outcome=$OUTCOME,T=$T,dt=$dt/input_data.p" \
     --population="$DATAPATH/population/${OUTCOME}_${T}h.csv" \
     --T=$T \
     --dt=$dt \
@@ -72,7 +76,8 @@ python -m FIDDLE.run \
 
 
 python -m FIDDLE.run \
-    --data_path="$DATAPATH/features,discretize=no/benchmark,outcome=mortality,T=48.0,dt=1.0/" \
+    --output_dir="$DATAPATH/features,discretize=no/benchmark,outcome=mortality,T=48.0,dt=1.0/" \
+    --data_fname="$DATAPATH/features/benchmark,outcome=mortality,T=48.0,dt=1.0/input_data.p" \
     --population="$DATAPATH/population/pop.mortality_benchmark.csv" \
     --T=48.0 \
     --dt=1.0 \

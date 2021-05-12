@@ -1,12 +1,21 @@
-Input data file: ../data/processed//features/outcome=Shock,T=4.0,dt=1.0/input_data.p
+Input:
+    Data      : ../data/processed//features/outcome=Shock,T=4.0,dt=1.0/input_data.p
+    Population: ../data/processed//population/Shock_4.0h.csv
+    Config    : None
+
+Output directory: ../data/processed//features/outcome=Shock,T=4.0,dt=1.0/
 
 Input arguments:
-    T      = 4
+    T      = 4.0
     dt     = 1.0
     θ₁     = 0.001
     θ₂     = 0.001
     θ_freq = 1.0
     k      = 3 ['min', 'max', 'mean']
+
+discretize = yes
+    S discretization bins: to be computed from data
+    X discretization bins: to be computed from data
 
 N = 19342
 L = 4
@@ -29,7 +38,7 @@ Remaining variables : 2680
 ================================================================================
 
 --------------------------------------------------------------------------------
-*) Detecting value types
+*) Detecting and parsing value types
 --------------------------------------------------------------------------------
 Saved as: ../data/processed//features/outcome=Shock,T=4.0,dt=1.0/value_types.csv
 
@@ -42,31 +51,31 @@ Variables (time-dependent): 2668
 # rows    (time-dependent): 6500419
 
 --------------------------------------------------------------------------------
-2.1) Transform time-invariant data
+2-A) Transform time-invariant data
 --------------------------------------------------------------------------------
 (N × ^d) table            :	 (19342, 12)
 number of missing entries :	 750 out of 232104 total
-Time elapsed: 0.221805 seconds
+Time elapsed: 0.506839 seconds
 
 Output
-s_all, binary features    :	 (19342, 164)
-Time elapsed: 6.271641 seconds
+S_all, binary features    :	 (19342, 164)
+Time elapsed: 12.853853 seconds
 
 --------------------------------------------------------------------------------
-3.1) Post-filter time-invariant data
+3-A) Post-filter time-invariant data
 --------------------------------------------------------------------------------
 Original       : 164
 Nearly-constant: 63
 Correlated     : 3
-Time elapsed: 6.313978 seconds
+Time elapsed: 12.972199 seconds
 
 Output
-s: shape=(19342, 98), density=0.114
-Total time: 6.407406 seconds
+S: shape=(19342, 98), density=0.114
+Total time: 13.146564 seconds
 
 
 --------------------------------------------------------------------------------
-2.2) Transform time-dependent data
+2-B) Transform time-dependent data
 --------------------------------------------------------------------------------
 Total variables    : 2668
 Frequent variables : ['DiaBP', 'HR', 'RR', 'SpO2', 'SysBP']
@@ -75,50 +84,44 @@ M₂ = 2663
 k  = 3 ['min', 'max', 'mean']
 
 Transforming each example...
+Batches of size 100:  193
+
+Parallel processing done
+DONE: Transforming each example...
 (freq) number of missing entries :	 100599 out of 19342×4×5=386840 total
 (freq) number of imputed entries :	 7402
- DiaBP  2132
-    HR   886
-    RR   969
-  SpO2  1295
- SysBP  2120
 (freq) number of not imputed entries :	 93197
- DiaBP  18951
-    HR  18380
-    RR  18014
-  SpO2  18904
- SysBP  18948
 (non-freq) number of missing entries :	 200563662 out of 19342×4×2663=206030984 total
 
 (N × L × ^D) table :	 (19342, 4, 2693)
-Time elapsed: 1203.003355 seconds
-
+Time elapsed: 942.877928 seconds
 Discretizing features...
+
 Processing 2688 non-boolean variable columns...
-    Binning numeric variables by quintile...
-    Converting variables to binary features
+    Computing bin edges for numeric variables...
+    Discretizing variables to binary features
 Finished discretizing features
 
 Output
-X_all: shape=(19342, 4, 6890), density=0.014
-Time elapsed: 1343.214195 seconds
+X_all: shape=(19342, 4, 7375), density=0.013
+Time elapsed: 2495.097135 seconds
 
 --------------------------------------------------------------------------------
-3.2) Post-filter time-dependent data
+3-B) Post-filter time-dependent data
 --------------------------------------------------------------------------------
-(19342, 4, 6890) 0.013722468862739425
-Original : 6890
-Nearly-constant: 2166
-*** time:  233.5130832195282
-Correlated     : 202
-*** time:  552.1400902271271
+(19342, 4, 7375) 0.012820042096850798
+Original : 7375
+Nearly-constant: 2418
+*** time:  599.648745059967
+Correlated     : 198
+*** time:  1320.519716501236
 
 Output
-X: shape=(19342, 4, 4522), density=0.019
-(19342, 4, 4522) 0.019238805895748088
-Time elapsed: 1895.372758 seconds
+X: shape=(19342, 4, 4759), density=0.018
+(19342, 4, 4759) 0.018277968400554758
+Time elapsed: 3815.630532 seconds
 
 Output
-X: shape=(19342, 4, 4522), density=0.019
-Total time: 1902.770419 seconds
+X: shape=(19342, 4, 4759), density=0.018
+Total time: 3822.909522 seconds
 
