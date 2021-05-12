@@ -12,3 +12,5 @@ Clone the repository and initialize the FIDDLE submodule:
 git clone https://github.com/MLD3/FIDDLE-experiments.git
 git submodule update --init --recursive
 ```
+
+To reproduce the experiments on MIMIC-III, use `conda env create -f environment.yml` to create a conda envionment named `FIDDLE-env` which uses pytho n3.7, and then follow the steps in README.

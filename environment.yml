@@ -1,0 +1,16 @@
+name: FIDDLE-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.7
+  - sparse
+  - pandas
+  - tqdm
+  - pyyaml
+  - scikit-learn
+  - numpy
+  - joblib
+  - ipykernel
+  - matplotlib
+prefix: /home/tangsp/miniconda3/envs/FIDDLE-env
