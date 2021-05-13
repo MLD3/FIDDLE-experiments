@@ -54,7 +54,7 @@ def main(task, T, dt, model_type):
     #     yte_pred = clf.decision_function(Xte)
     # except AttributeError:
     #     yte_pred = clf.predict_proba(Xte)[:,1]
-    from sklearn.externals.joblib import Parallel, delayed
+    from joblib import Parallel, delayed
     from tqdm import tqdm_notebook as tqdm
     def func(i):
         yte_true_b, yte_pred_b = utils.resample(y_true, y_score, replace=True, random_state=i)
